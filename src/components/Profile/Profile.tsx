@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts, {ActionPostType} from "./MyPosts/MyPosts";
 
 type PostType = {
     id: number
@@ -10,13 +10,13 @@ type PostType = {
 
 type ProfileProps = {
     statePosts:PostType[]
-    addPost: (newPost: string | undefined)=> void
+    dispatch: (newPost: ActionPostType)=> void
 }
 const Profile = (props: ProfileProps) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts statePosts={props.statePosts} addPost={props.addPost}/>
+            <MyPosts statePosts={props.statePosts} dispatch={props.dispatch}/>
         </div>
     )
 }

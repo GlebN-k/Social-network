@@ -1,3 +1,5 @@
+const ADD_POST = "ADD-POST"
+
 let store = {
     _state: {
         posts: [
@@ -30,17 +32,36 @@ let store = {
     _callSubscriber() {
         console.log('state changed')
     },
-    addPost(text) {
-        let newPost = {
-            id: 5, message: text, likesCount: 0
-        }
-        this._state.posts.push(newPost)
-        this._callSubscriber()
-    },
     subscribe(observer) {
         this._callSubscriber = observer
-    }
+    },
+    // _addPost(text) {
+    //      let newPost = {
+    //        id: 5, message: text, likesCount: 0
+    //      }
+    //     this._state.posts.push(newPost)
+    //     this._callSubscriber()
+    // },
+
+
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+
+            let newPost = {
+                id: 5, message: action.text, likesCount: 0
+            }
+            this._state.posts.push(newPost)
+            this._callSubscriber()
+
+        } else {
+            console.log(new Error('Problems with actions'))
+        }
+    },
+
+
 }
+
+export const addPostActionCreator = (text) => ({type: ADD_POST, text: text || ''})
 
 
 

@@ -6,6 +6,7 @@ import Error404 from "./components/Error/Error404";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
+import {ActionPostType} from "./components/Profile/MyPosts/MyPosts";
 
 type PostType = {
     id: number
@@ -31,10 +32,10 @@ type AppStateType = {
 
 type PropsType = {
     state: AppStateType
-    addPost: (newPost: string | undefined) => void
+    dispatch: (newPost: ActionPostType) => void
 }
 
-const App: React.FC<PropsType> = ({state, addPost}) => {
+const App: React.FC<PropsType> = ({state, dispatch}) => {
 
     return (
     <div className="app-wrapper">
@@ -44,7 +45,7 @@ const App: React.FC<PropsType> = ({state, addPost}) => {
       <Navbar />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path={'/profile'} element={<Profile statePosts={state.posts} addPost={addPost} />} />
+          <Route path={'/profile'} element={<Profile statePosts={state.posts} dispatch={dispatch} />} />
           <Route path={'/dialogs/*'} element={<Dialogs />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>

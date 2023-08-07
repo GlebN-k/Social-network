@@ -1,5 +1,6 @@
 import React, {useRef} from "react";
 import Post from "../../Post/Post";
+import {addPostActionCreator} from "../../../redux/state";
 
 type PostType = {
     id: number
@@ -8,21 +9,31 @@ type PostType = {
 }
 
 type MyPostsType = {
-    statePosts:PostType[]
-    addPost: (newPost: string | undefined) => void
+    statePosts: PostType[]
+    dispatch: (newPost: ActionPostType) => void
 }
 
-const MyPosts: React.FC<MyPostsType> = ({statePosts, addPost:addPostProps}) => {
-    let postsElement = statePosts.map(post => <Post message={post.message} likesCount={post.likesCount} />)
+export type ActionPostType = {
+    type: string
+    text: string | undefined
+}
+
+
+
+const MyPosts: React.FC<MyPostsType> = ({statePosts, dispatch}) => {
+    let postsElement = statePosts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
     // const name = useRef<HTMLTextAreaElement>(null)
     let newPostElement = useRef<HTMLTextAreaElement>(null)
 
     let addPost = () => {
-        // debugger
         let text = newPostElement.current?.value
-        // console.log(text)
-        addPostProps(text)
+        // let action = {type: "ADD-POST", text: text};
+        dispatch(addPostActionCreator(text))
+        if (newPostElement.current) {
+            newPostElement.current.value = ''
+        }
+
         // alert(newPostElement.current?.value)
     }
 
@@ -32,7 +43,7 @@ const MyPosts: React.FC<MyPostsType> = ({statePosts, addPost:addPostProps}) => {
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} />
+                    <textarea ref={newPostElement}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
