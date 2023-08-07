@@ -35,7 +35,8 @@ type PropsType = {
 }
 
 const App: React.FC<PropsType> = ({state, addPost}) => {
-  return (
+
+    return (
     <div className="app-wrapper">
       {/* <Header /> */}
 

@@ -19,8 +19,9 @@ const MyPosts: React.FC<MyPostsType> = ({statePosts, addPost:addPostProps}) => {
     let newPostElement = useRef<HTMLTextAreaElement>(null)
 
     let addPost = () => {
+        // debugger
         let text = newPostElement.current?.value
-        console.log(text)
+        // console.log(text)
         addPostProps(text)
         // alert(newPostElement.current?.value)
     }
@@ -31,7 +32,7 @@ const MyPosts: React.FC<MyPostsType> = ({statePosts, addPost:addPostProps}) => {
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea ref={newPostElement} />
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
