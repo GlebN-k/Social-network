@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import Post from "../../Post/Post";
-import {addPostActionCreator} from "../../../redux/state";
+import {addPostActionCreator} from "../../../redux/posts-reducer";
 
 type PostType = {
     id: number

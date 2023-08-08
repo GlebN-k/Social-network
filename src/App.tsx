@@ -36,7 +36,7 @@ type PropsType = {
 }
 
 const App: React.FC<PropsType> = ({state, dispatch}) => {
-
+debugger
     return (
     <div className="app-wrapper">
       {/* <Header /> */}

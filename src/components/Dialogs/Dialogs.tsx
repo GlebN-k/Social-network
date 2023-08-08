@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react'
 import {DialogItem} from "../DialogItem/DialogItem";
 import {MessageItem} from "../MessageItem/MessageItem";
 import s from './Dialogs.module.css'
-import {addMessageActionCreator} from "../../redux/state";
+import {addMessageActionCreator} from "../../redux/messages-reducer";
 // import {ActionPostType} from "../Profile/MyPosts/MyPosts";
 
 type UserType = {

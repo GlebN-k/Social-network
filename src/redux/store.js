@@ -1,3 +1,6 @@
+import postsReducer from "./posts-reducer";
+import messagesReducer from "./messages-reducer";
+
 const ADD_POST = "ADD-POST"
 const ADD_MESSAGE = "ADD-MESSAGE"
 
@@ -36,40 +39,17 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    // _addPost(text) {
-    //      let newPost = {
-    //        id: 5, message: text, likesCount: 0
-    //      }
-    //     this._state.posts.push(newPost)
-    //     this._callSubscriber()
-    // },
-
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
 
-            let newPost = {
-                id: 5, message: action.text, likesCount: 0
-            }
-            this._state.posts.push(newPost)
-            this._callSubscriber()
-
-        } else if (action.type ===  ADD_MESSAGE) {
-            let newMessage = {id:6, message: action.message}
-            this._state.messages.push(newMessage)
-            this._callSubscriber()
-        }
-        else {
-            console.log(new Error('Problems with actions'))
-        }
-
+        this._state.posts = postsReducer(this._state.posts, action)
+        this._state.messages = messagesReducer(this._state.messages, action)
+        this._callSubscriber(this._state)
     },
 
 
 }
 
-export const addPostActionCreator = (text) => ({type: ADD_POST, text: text || ''})
-export const addMessageActionCreator = (message) => ({type: ADD_MESSAGE, message:message || ''})
 
 
 
