@@ -1,4 +1,5 @@
 const ADD_POST = "ADD-POST"
+const ADD_MESSAGE = "ADD-MESSAGE"
 
 let store = {
     _state: {
@@ -53,15 +54,23 @@ let store = {
             this._state.posts.push(newPost)
             this._callSubscriber()
 
-        } else {
+        } else if (action.type ===  ADD_MESSAGE) {
+            let newMessage = {id:6, message: action.message}
+            this._state.messages.push(newMessage)
+            this._callSubscriber()
+        }
+        else {
             console.log(new Error('Problems with actions'))
         }
+
     },
 
 
 }
 
 export const addPostActionCreator = (text) => ({type: ADD_POST, text: text || ''})
+export const addMessageActionCreator = (message) => ({type: ADD_MESSAGE, message:message || ''})
+
 
 
 

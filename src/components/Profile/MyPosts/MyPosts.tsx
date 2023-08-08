@@ -15,7 +15,8 @@ type MyPostsType = {
 
 export type ActionPostType = {
     type: string
-    text: string | undefined
+    text?: string | undefined
+    message?: string | undefined
 }
 
 

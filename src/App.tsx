@@ -46,7 +46,7 @@ const App: React.FC<PropsType> = ({state, dispatch}) => {
       <div className="app-wrapper-content">
         <Routes>
           <Route path={'/profile'} element={<Profile statePosts={state.posts} dispatch={dispatch} />} />
-          <Route path={'/dialogs/*'} element={<Dialogs />} />
+          <Route path={'/dialogs/*'} element={<Dialogs stateDialogs={state.dialogs} stateMessages={state.messages} dispatch={dispatch} />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>
       </div>
