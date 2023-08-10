@@ -7,16 +7,17 @@ let initialState = [
     {id: 4, message: 'Have a nice day', likesCount: 7},
 ]
  const postsReducer = (state = initialState, action) => {
-
+     let newState = [...state]
     if (action.type === ADD_POST) {
         let newPost = {
             id: 5, message: action.text, likesCount: 0
         }
-        state.push(newPost)
+
+        newState.push(newPost)
 
     }
 
-    return state
+    return newState
 }
 
 export const addPostActionCreator = (text) => ({type: ADD_POST, text: text || ''})

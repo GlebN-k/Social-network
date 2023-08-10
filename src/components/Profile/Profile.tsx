@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPosts, {ActionPostType} from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type PostType = {
     id: number
@@ -13,10 +14,11 @@ type ProfileProps = {
     dispatch: (newPost: ActionPostType)=> void
 }
 const Profile = (props: ProfileProps) => {
+    console.log(props)
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts statePosts={props.statePosts} dispatch={props.dispatch}/>
+            <MyPostsContainer statePosts={props.statePosts} dispatch={props.dispatch}/>
         </div>
     )
 }

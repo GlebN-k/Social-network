@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {ActionPostType} from "./components/Profile/MyPosts/MyPosts";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type PostType = {
     id: number
@@ -46,7 +47,7 @@ debugger
       <div className="app-wrapper-content">
         <Routes>
           <Route path={'/profile'} element={<Profile statePosts={state.posts} dispatch={dispatch} />} />
-          <Route path={'/dialogs/*'} element={<Dialogs stateDialogs={state.dialogs} stateMessages={state.messages} dispatch={dispatch} />} />
+          <Route path={'/dialogs/*'} element={<DialogsContainer stateDialogs={state.dialogs} stateMessages={state.messages} dispatch={dispatch} />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>
       </div>

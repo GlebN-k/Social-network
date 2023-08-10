@@ -3,7 +3,6 @@ import {DialogItem} from "../DialogItem/DialogItem";
 import {MessageItem} from "../MessageItem/MessageItem";
 import s from './Dialogs.module.css'
 import {addMessageActionCreator} from "../../redux/messages-reducer";
-// import {ActionPostType} from "../Profile/MyPosts/MyPosts";
 
 type UserType = {
     id: number
@@ -15,29 +14,24 @@ type MessageType = {
     message: string
 }
 
-type ActionMessageType = {
-    type: string
-    message: string | undefined
-}
+// type ActionMessageType = {
+//     type: string
+//     message: string | undefined
+// }
 
 type DialogsProps = {
     stateDialogs: UserType[]
     stateMessages: MessageType[]
-    dispatch: (newMessage: ActionMessageType)=> void
+    callBack: (textArea: string) => void
 }
-const Dialogs: React.FC<DialogsProps> = ({stateDialogs, stateMessages, dispatch}) => {
+const Dialogs: React.FC<DialogsProps> = ({stateDialogs, stateMessages, callBack}) => {
     const [textArea, setTextArea] = useState('')
-
-    // const addMessageActionCreator = () => ({type: })
-
     const dialogs = stateDialogs.map(d => <DialogItem pathId={d.id} name={d.name} key={d.id} />)
     const messages = stateMessages.map(m => <MessageItem key={m.id} message={m.message}/> )
 
     const changeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => setTextArea(e.currentTarget.value)
     const addMessageHandler = () => {
-        debugger
-        let newMessage = addMessageActionCreator(textArea)
-        dispatch(newMessage)
+        callBack(textArea)
         setTextArea('')
     }
 

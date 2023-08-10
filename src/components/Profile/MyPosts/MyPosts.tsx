@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import Post from "../../Post/Post";
-import {addPostActionCreator} from "../../../redux/posts-reducer";
+// import {addPostActionCreator} from "../../../redux/posts-reducer";
 
 type PostType = {
     id: number
@@ -10,7 +10,8 @@ type PostType = {
 
 type MyPostsType = {
     statePosts: PostType[]
-    dispatch: (newPost: ActionPostType) => void
+    callBack: (newPostElement: string | undefined) => void
+    // dispatch: (newPost: ActionPostType) => void
 }
 
 export type ActionPostType = {
@@ -21,24 +22,17 @@ export type ActionPostType = {
 
 
 
-const MyPosts: React.FC<MyPostsType> = ({statePosts, dispatch}) => {
+const MyPosts: React.FC<MyPostsType> = ({statePosts, callBack}) => {
     let postsElement = statePosts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
-    // const name = useRef<HTMLTextAreaElement>(null)
     let newPostElement = useRef<HTMLTextAreaElement>(null)
 
-    let addPost = () => {
-        let text = newPostElement.current?.value
-        // let action = {type: "ADD-POST", text: text};
-        dispatch(addPostActionCreator(text))
-        if (newPostElement.current) {
+    const addPost = () => {
+        callBack(newPostElement.current?.value)
+        if(newPostElement.current) {
             newPostElement.current.value = ''
         }
-
-        // alert(newPostElement.current?.value)
     }
-
-    // console.log(name)
     return (
         <div>
             <h3>My Posts</h3>
