@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import {ActionPostType} from "./components/Profile/MyPosts/MyPosts";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Users from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 type PostType = {
     id: number
@@ -37,7 +39,6 @@ type PropsType = {
 }
 
 const App: React.FC<PropsType> = ({state, dispatch}) => {
-debugger
     return (
     <div className="app-wrapper">
       {/* <Header /> */}
@@ -48,6 +49,7 @@ debugger
         <Routes>
           <Route path={'/profile'} element={<Profile statePosts={state.posts} dispatch={dispatch} />} />
           <Route path={'/dialogs/*'} element={<DialogsContainer stateDialogs={state.dialogs} stateMessages={state.messages} dispatch={dispatch} />} />
+          <Route path={'/users'} element={<UsersContainer />} />
           <Route path={'/*'} element={<Error404 />} />
         </Routes>
       </div>

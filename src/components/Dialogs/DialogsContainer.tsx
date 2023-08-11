@@ -29,7 +29,6 @@ type DialogsProps = {
 const DialogsContainer: React.FC<DialogsProps> = ({stateDialogs, stateMessages, dispatch}) => {
 
     const addMessageHandler = (textArea: string) => {
-        debugger
         let newMessage = addMessageActionCreator(textArea)
         dispatch(newMessage)
         // setTextArea('')
